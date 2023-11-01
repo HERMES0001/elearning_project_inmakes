@@ -1,0 +1,238 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="preconnect" href="{% static 'https://fonts.googleapis.com' %}">
+    <link rel="preconnect" href="{% static 'https://fonts.gstatic.com' %}" crossorigin>
+    <link href="{% static 'https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap' %}" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <style>
+        /* Apply styling to the table */
+        table {
+            margin: 0 auto; /* Center the table horizontally on the page */
+            border-collapse: collapse;
+            width: 35%; /* Adjust the width as needed */
+            border-color:Aqua;
+        }
+
+        /* Apply styling to table cells */
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 2px solid black;
+            border-color:aqua;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4d4d4d;
+            color: white;
+        }
+
+        /* Apply styling to labels */
+        label {
+            font-weight: bold;
+        }
+
+        /* Apply styling to select elements */
+        select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Apply styling to checkboxes and their labels */
+        input[type="checkbox"] {
+            margin-right: 5px;
+
+        }
+            input[type="submit"] {
+        text-align: center;
+        padding: 10px 20px;
+        background-color: #4d4d4d; /* Green color */
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    /* Hover effect */
+    input[type="submit"]:hover {
+        background-color: #4CAF50; /* Slightly darker green color on hover */
+    }
+
+        h1{
+        color:white;
+        }
+        h3{
+        color:red;
+        }
+        .background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+.shape:first-child{
+    background: linear-gradient(
+        #1845ad,
+        #23a2f6
+    );
+    left: -80px;
+    top: -80px;
+}
+.shape:last-child{
+    background: linear-gradient(
+        to right,
+        #ff512f,
+        #f09819
+    );
+    right: -30px;
+    bottom: -80px;
+    </style>
+</head>
+<body bgcolor="black"><br><br>
+<h1 align="center" >REGISTER</h1>
+<form action="register" method="post">
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    {% csrf_token %}
+ <table align="center">
+    <tr>
+        <td>Enter Your Username:</td>
+        <td align="center"><input type="text" name="username" ></td>
+    </tr>
+    <tr>
+        <td>Enter Your first_name</td>
+        <td align="center"><input type="text" name="first_name"></td>
+    </tr>
+    <tr>
+         <td>Enter Your last_name</td>
+        <td align="center"><input type="text" name="last_name" ></td>
+    </tr>
+    <tr>
+         <td>Enter Your email</td>
+        <td align="center"><input type="text" name="email" ></td>
+    </tr>
+    <tr>
+         <td>Enter password</td>
+        <td align="center"><input type="text" name="password" ></td>
+    </tr>
+    <tr>
+        <td> Confirm password</td>
+        <td align="center"><input type="text" name="c_password" ></td>
+    </tr>
+    <tr>
+         <td> Phone Number</td>
+        <td align="center"><input type="number" name="phone"></td>
+    </tr>
+    <tr>
+         <td>Address</td>
+        <td align="center"><input type="text" name="address"></td>
+    </tr>
+</table><br>
+
+
+    <table align="center" border="2">
+    <tr>
+        <td><label for="department">Department:</label></td>
+        <td>
+            <select name="department" id="department">
+                <option value="commerce">Commerce</option>
+                <option value="science">Science</option>
+                <option value="arts">Arts</option>
+                <!-- Add more departments as needed -->
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><label for="course">Courses:</label></td>
+        <td>
+            <select name="course" id="course">
+                <!-- Options will be dynamically populated based on the selected department using JavaScript -->
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><label for="purpose">Purpose:</label></td>
+        <td>
+            <select name="purpose" id="purpose">
+                <option value="enquiry">For Enquiry</option>
+                <option value="order">Place Order</option>
+                <option value="return">Return</option>
+            </select>
+        </td>
+    </tr>
+</table><br>
+
+        <!-- Add more purposes as needed -->
+    </select><br>
+<table align="center">
+    <tr>
+        <td><label for="materials">Materials Provided:</label></td>
+
+        <td><input type="checkbox" name="materials[]" value="debitNoteBook"> Note Book</td>
+
+        <td><input type="checkbox" name="materials[]" value="pen"> Pen</td>
+
+        <td><input type="checkbox" name="materials[]" value="examPapers"> Exam Papers</td>
+    </tr>
+
+</table><br>
+
+    <!-- Add more materials as needed -->
+<br><h3 align="center">
+    <input type="submit" name="Register" align="center" ><br>
+    </h3>
+    </h4>
+</form><h3 align="center" >
+{% for msg in messages %}
+{{msg}}
+{% endfor %}
+    </h3>
+
+
+<script>
+    const departmentDropdown = document.getElementById('department');
+    const courseDropdown = document.getElementById('course');
+
+    departmentDropdown.addEventListener('change', function() {
+        courseDropdown.innerHTML = ''; // Clear existing options
+
+        if (departmentDropdown.value === 'commerce') {
+            // Populate "Courses" for Commerce
+            const commerceCourses = ["BBA", "BCom", "Other "];
+            populateDropdown(courseDropdown, commerceCourses);
+        } else if (departmentDropdown.value === 'science') {
+            // Populate "Courses" for Science
+            const scienceCourses = ["BSc", "MSc", "Other "];
+            populateDropdown(courseDropdown, scienceCourses);
+        } else if (departmentDropdown.value === 'arts') {
+            // Populate "Courses" for Arts
+            const artsCourses = ["BA", "MA", "Other Arts Courses"];
+            populateDropdown(courseDropdown, artsCourses);
+        }
+    });
+
+    // Function to populate a dropdown with options
+    function populateDropdown(dropdown, options) {
+        options.forEach(function(option) {
+            const optionElement = document.createElement('option');
+            optionElement.value = option;
+            optionElement.text = option;
+            dropdown.appendChild(optionElement);
+        });
+    }
+</script>
+
+</body>
+</html>
